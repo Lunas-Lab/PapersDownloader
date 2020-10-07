@@ -1,4 +1,4 @@
-Simply download the entire folder except the 'src' folder (unless you want to try make your own builds, in which case go ahead) and run the EXE (should have a Shrek icon, but it may not)
+Simply download the entire folder (you can delete the 'src' folder if you don't intend to build it yourself) and run the EXE (should have a Shrek icon, but it may not)
 
 IMPORTANT:
 	You NEED 2019 Microsoft Visual C++ runtimes to run this. You likely already have them, but if not click on a link to download them from an official Microsoft source:
