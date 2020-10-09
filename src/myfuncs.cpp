@@ -28,11 +28,15 @@ QString parse(QString in) {     //helper function to replace spaces with %20's
     return in;
 }
 
-QString url(QString level, QString subject, QString year, QString paper, QString session, QString variant, QString type, QString courseCode, QString urlStart, bool remEnd, bool specExt_bool, QString specExt_QString) {
+QString url(QString level, QString subject, QString year, QString paper, QString session, QString variant, QString type, QString courseCode, QString urlStart, bool remEnd, bool specExt_bool, QString specExt_QString, bool addYear) {
     QString url = urlStart; //initialises QString with website source
     url.append(parse(level));
     url.append("/");
     url.append(parse(subject));
+    if (addYear == true) {
+        url.append("/20");
+        url.append(year);
+    }
     url.append("/");
     url.append(parse(courseCode));
     url.append("_");

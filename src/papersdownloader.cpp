@@ -118,31 +118,31 @@ void PapersDownloader::on_downloadButton_clicked()
     }
     else
         info.site = "\"https://papers.xtremepape.rs/CAIE/";
-    if (ui->levelBox->currentIndex() == 1 && info.asAddYear == true && ui->gceguideBox->isChecked()) {
+    /*if (ui->levelBox->currentIndex() == 1 && info.asAddYear == true && ui->gceguideBox->isChecked()) {
         info.subject.append("/20");
         info.subject.append(info.year);
-    }
+    }*/
     if (ui->gceguideBox->isChecked() && info.level == "AS and A Level") {
         info.level = "A Levels";
     }
     if (verify.levelFilled && verify.subjectFilled && verify.paperFilled && verify.sessionFilled && verify.dirFilled && verify.typeFilled) {
         if (ui->qpBox->isChecked()) {
             info.type = "qp";
-            MYFUNCS_H::curl(MYFUNCS_H::url(info.level, info.subject, info.year, info.paper, info.session, info.variant, info.type, info.courseCode, info.site, false, false, ""), info.drive, info.rootDir, info.folder);
+            MYFUNCS_H::curl(MYFUNCS_H::url(info.level, info.subject, info.year, info.paper, info.session, info.variant, info.type, info.courseCode, info.site, false, false, "", info.asAddYear), info.drive, info.rootDir, info.folder);
         }
         if (ui->msBox->isChecked()) {
             info.type = "ms";
-            MYFUNCS_H::curl(MYFUNCS_H::url(info.level, info.subject, info.year, info.paper, info.session, info.variant, info.type, info.courseCode, info.site, false, false, ""), info.drive, info.rootDir, info.folder);
+            MYFUNCS_H::curl(MYFUNCS_H::url(info.level, info.subject, info.year, info.paper, info.session, info.variant, info.type, info.courseCode, info.site, false, false, "", info.asAddYear), info.drive, info.rootDir, info.folder);
         }
         if (ui->gtBox->isChecked()) {
             info.type = "gt";
             info.paper = "";
             info.variant = "";
-            MYFUNCS_H::curl(MYFUNCS_H::url(info.level, info.subject, info.year, info.paper, info.session, info.variant, info.type, info.courseCode, info.site, true, false, ""), info.drive, info.rootDir, info.folder);
+            MYFUNCS_H::curl(MYFUNCS_H::url(info.level, info.subject, info.year, info.paper, info.session, info.variant, info.type, info.courseCode, info.site, true, false, "", info.asAddYear), info.drive, info.rootDir, info.folder);
         }
         if (ui->otherBox->isChecked()) {
             info.type = ui->otherLineEdit->text();
-            MYFUNCS_H::curl(MYFUNCS_H::url(info.level, info.subject, info.year, info.paper, info.session, info.variant, info.type, info.courseCode, info.site, false, true, ui->fileExtensionLineEdit->text()), info.drive, info.rootDir, info.folder);
+            MYFUNCS_H::curl(MYFUNCS_H::url(info.level, info.subject, info.year, info.paper, info.session, info.variant, info.type, info.courseCode, info.site, false, true, ui->fileExtensionLineEdit->text(), info.asAddYear), info.drive, info.rootDir, info.folder);
         }
     }
     else if (!verify.levelFilled || !verify.subjectFilled || !verify.paperFilled || !verify.sessionFilled || !verify.dirFilled || !verify.typeFilled) {
