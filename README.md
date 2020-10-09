@@ -1,4 +1,4 @@
-Simply download the entire folder (you can delete the 'src' folder if you don't intend to build it yourself) and run the EXE. You can get it easily by clicking on the number on the right side of the screen (1.0.3 at the time I'm writing this) and getting the zip file, extract it and boom you're done.
+Simply download the entire folder (you can delete the 'src' folder if you don't intend to build it yourself) and run the EXE. You can get it easily by clicking on the number on the right side of the screen (1.0.2 at the time I'm writing this) and getting the zip file, extract it and boom you're done.
 
 IMPORTANT:
 	You NEED 2019 Microsoft Visual C++ runtimes to run this. You likely already have them, but if not click on a link to download them from an official Microsoft source:
