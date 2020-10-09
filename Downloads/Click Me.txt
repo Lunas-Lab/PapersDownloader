@@ -1,0 +1,4 @@
+Congratulations! You found an easter egg!
+This is simply here so that Git will keep this folder here
+If you don't care about all of that just close this or delete it 
+it's not important dont worry
