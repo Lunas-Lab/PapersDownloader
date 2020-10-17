@@ -1,0 +1,1 @@
+curl --ssl-no-revoke https://raw.githubusercontent.com/HappyTogetherTurt/PapersDownloader/master/PapersDownloader.exe --remote-name
