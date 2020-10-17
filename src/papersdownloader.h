@@ -42,6 +42,8 @@ private slots:
 
     void on_subjectBox_currentIndexChanged(int index);
 
+    void on_openBox_stateChanged(int arg1);
+
 private:
     Ui::PapersDownloader *ui;
     void loadOptions(int index);

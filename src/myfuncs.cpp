@@ -2,7 +2,7 @@
 #include <QString>
 //#include "myfuncs.h"
 
-int curl(QString commandQString, QString drive, QString rootDir, QString subjectDir) {
+int curl(QString commandQString, QString drive, QString rootDir, QString subjectDir, bool openAfter, QString paperName) {
     commandQString.prepend("run.bat "); //prepends the call to the batch file
     commandQString.append(" ");
     commandQString.append(drive);
@@ -13,6 +13,10 @@ int curl(QString commandQString, QString drive, QString rootDir, QString subject
     commandQString.append("\"");
     commandQString.append(subjectDir);
     commandQString.append("\"");
+    if (openAfter == true) {
+        commandQString.append(" -o ");
+        commandQString.append(paperName);
+    }
 
     std::string commandString = commandQString.toStdString();   //converts the QString to a std::string
     char commandChar[300];  //declares the command char array as 300 long
@@ -68,3 +72,28 @@ QString extractCourse(QString in) {
     }
     return out;
 }
+
+QString paperName(QString year, QString paper, QString session, QString variant, QString type, QString courseCode, bool remEnd, bool specExt_bool, QString specExt_QString) {
+    QString name;
+    name.append(parse(courseCode));
+    name.append("_");
+    name.append(parse(session));
+    name.append(parse(year));
+    name.append("_");
+    name.append(parse(type));
+    if (remEnd == false) {
+    name.append("_");
+    name.append(parse(paper));
+    name.append(parse(variant));
+    }
+    if (specExt_bool == false) {
+    name.append(".pdf");
+    }
+    else if (specExt_bool) {
+        name.append(".");
+        name.append(specExt_QString);
+        name.append("\"");
+    }
+    return name;
+}
+

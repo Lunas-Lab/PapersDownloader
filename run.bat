@@ -8,3 +8,8 @@ mkdir %4%
 cd %4%
 )
 curl --ssl-no-revoke %1 --remote-name
+if "%5%"=="-o" (
+start %6%
+) else (
+exit
+)

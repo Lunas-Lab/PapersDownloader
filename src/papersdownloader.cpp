@@ -32,6 +32,7 @@ struct paperInformation {   //struct for information about the papers required
     QString drive;
     QString folder;
     bool asAddYear;
+    bool openAfter;
 };
 
 int yearInt;
@@ -128,21 +129,21 @@ void PapersDownloader::on_downloadButton_clicked()
     if (verify.levelFilled && verify.subjectFilled && verify.paperFilled && verify.sessionFilled && verify.dirFilled && verify.typeFilled) {
         if (ui->qpBox->isChecked()) {
             info.type = "qp";
-            MYFUNCS_H::curl(MYFUNCS_H::url(info.level, info.subject, info.year, info.paper, info.session, info.variant, info.type, info.courseCode, info.site, false, false, "", info.asAddYear), info.drive, info.rootDir, info.folder);
+            MYFUNCS_H::curl(MYFUNCS_H::url(info.level, info.subject, info.year, info.paper, info.session, info.variant, info.type, info.courseCode, info.site, false, false, "", info.asAddYear), info.drive, info.rootDir, info.folder, info.openAfter, MYFUNCS_H::paperName(info.year, info.paper, info.session, info.variant, info.type, info.courseCode, false, false, ""));
         }
         if (ui->msBox->isChecked()) {
             info.type = "ms";
-            MYFUNCS_H::curl(MYFUNCS_H::url(info.level, info.subject, info.year, info.paper, info.session, info.variant, info.type, info.courseCode, info.site, false, false, "", info.asAddYear), info.drive, info.rootDir, info.folder);
+            MYFUNCS_H::curl(MYFUNCS_H::url(info.level, info.subject, info.year, info.paper, info.session, info.variant, info.type, info.courseCode, info.site, false, false, "", info.asAddYear), info.drive, info.rootDir, info.folder, info.openAfter, MYFUNCS_H::paperName(info.year, info.paper, info.session, info.variant, info.type, info.courseCode, false, false, ""));
         }
         if (ui->gtBox->isChecked()) {
             info.type = "gt";
             info.paper = "";
             info.variant = "";
-            MYFUNCS_H::curl(MYFUNCS_H::url(info.level, info.subject, info.year, info.paper, info.session, info.variant, info.type, info.courseCode, info.site, true, false, "", info.asAddYear), info.drive, info.rootDir, info.folder);
+            MYFUNCS_H::curl(MYFUNCS_H::url(info.level, info.subject, info.year, info.paper, info.session, info.variant, info.type, info.courseCode, info.site, true, false, "", info.asAddYear), info.drive, info.rootDir, info.folder, info.openAfter, MYFUNCS_H::paperName(info.year, info.paper, info.session, info.variant, info.type, info.courseCode, true, false, ""));
         }
         if (ui->otherBox->isChecked()) {
             info.type = ui->otherLineEdit->text();
-            MYFUNCS_H::curl(MYFUNCS_H::url(info.level, info.subject, info.year, info.paper, info.session, info.variant, info.type, info.courseCode, info.site, false, true, ui->fileExtensionLineEdit->text(), info.asAddYear), info.drive, info.rootDir, info.folder);
+            MYFUNCS_H::curl(MYFUNCS_H::url(info.level, info.subject, info.year, info.paper, info.session, info.variant, info.type, info.courseCode, info.site, false, true, ui->fileExtensionLineEdit->text(), info.asAddYear), info.drive, info.rootDir, info.folder, info.openAfter, MYFUNCS_H::paperName(info.year, info.paper, info.session, info.variant, info.type, info.courseCode, false, true, ui->fileExtensionLineEdit->text()));
         }
     }
     else if (!verify.levelFilled || !verify.subjectFilled || !verify.paperFilled || !verify.sessionFilled || !verify.dirFilled || !verify.typeFilled) {
@@ -231,4 +232,9 @@ void PapersDownloader::on_subjectBox_currentIndexChanged(int index)
     }
     else
         info.asAddYear = false;
+}
+
+void PapersDownloader::on_openBox_stateChanged(int arg1)
+{
+    info.openAfter = arg1;
 }
