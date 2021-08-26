@@ -46,6 +46,7 @@ PapersDownloader::PapersDownloader(QWidget *parent)
     , ui(new Ui::PapersDownloader)
 {
     ui->setupUi(this);
+    loadAddYear();
     ui->levelBox->setPlaceholderText("Select your level here");     //access functions to set placeholder texts, etc
     ui->subjectBox->setPlaceholderText("Select your subject here");
 }
@@ -163,7 +164,7 @@ void PapersDownloader::on_downloadButton_clicked()
 void PapersDownloader::on_sessionBox_currentTextChanged(const QString &arg1)
 {
     info.session = arg1;
-    if (arg1 != 0) {
+    if (arg1 != "0") {
         verify.sessionFilled = true;
     }
     else
@@ -227,12 +228,18 @@ void PapersDownloader::on_gceguideBox_toggled(bool checked)
 
 void PapersDownloader::on_subjectBox_currentIndexChanged(int index)
 {
-    if (index == 9 || index == 56 || index == 0) {
-        info.asAddYear = true;
+    if (info.level == "AS and A Level"){
+     if (addYearArray[index]) {
+         info.asAddYear = true;
+         qDebug() << "Year added";
+     }
+     else if (addYearArray[index] == false){
+         info.asAddYear = false;
+         qDebug() << "Year removed";
+     }
     }
-    else
-        info.asAddYear = false;
 }
+
 
 void PapersDownloader::on_openBox_stateChanged(int arg1)
 {

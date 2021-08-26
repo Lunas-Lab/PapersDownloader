@@ -36,3 +36,6 @@ win32:RC_ICONS += shrek.ico
 
 RESOURCES += \
     resources.qrc
+
+INCLUDEPATH += \
+    C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0

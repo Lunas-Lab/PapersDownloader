@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>shrek.ico</file>
+        <file>ico.png</file>
     </qresource>
 </RCC>

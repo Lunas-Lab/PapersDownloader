@@ -8,6 +8,7 @@ QString parse(QString in);  //simply removes spaces and replaces with %20
 QString url(QString level, QString subject, QString year, QString paper, QString session, QString variant, QString type, QString courseCode, QString urlStart, bool remEnd, bool specExt_bool, QString specExt_QString, bool addYear);    //forms url
 QString extractCourse(QString in);  //gets the course code from the string in the string list
 QString paperName(QString year, QString paper, QString session, QString variant, QString type, QString courseCode, bool remEnd, bool specExt_bool, QString specExt_QString);
+bool loadAddYear();
 
 
 
@@ -205,9 +206,10 @@ QStringList subjects_asalevel = {
     "Travel and Tourism (9395)",
     "Urdu (A Level only) (9676)",
     "Urdu - Language (AS Level only) (8686)",
-    "Urdu - Pakistan only (A Level only) (9686)",
+    "Urdu - Pakistan only (A Level only) (9686)"
 
 };
 
+extern bool addYearArray[84];
 
 #endif //MYFUNCS_H

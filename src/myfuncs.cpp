@@ -1,6 +1,11 @@
 #include <string>
 #include <QString>
+#include <fstream>
+#include <iostream>
+#include <QDebug>
 //#include "myfuncs.h"
+
+bool addYearArray[84];
 
 int curl(QString commandQString, QString drive, QString rootDir, QString subjectDir, bool openAfter, QString paperName) {
     commandQString.prepend("run.bat "); //prepends the call to the batch file
@@ -95,5 +100,31 @@ QString paperName(QString year, QString paper, QString session, QString variant,
         name.append("\"");
     }
     return name;
+}
+
+bool loadAddYear(){
+    char c;
+#ifdef _DEBUG
+    std::ifstream file("D:\\Repos\\build-PapersDownloader-Desktop_Qt_5_15_0_MSVC2019_64bit-Debug\\debug\\years.paper");
+#endif
+#ifndef _DEBUG
+    std::ifstream file("years.paper");
+#endif
+    if (file.good()) {qDebug() << "22";}
+    for (int i = 0; i <= 83; i++){
+        file.get(c);
+        if (c == '1'){
+            addYearArray[i] = true;
+        }
+        else if (c == '0'){
+            addYearArray[i] = false;
+        }
+        else if (c != 0 && c != 1) {
+            qDebug() << "Invalid character in years.paper file";
+            return false;
+        }
+    }
+    file.close();
+    return true;
 }
 
